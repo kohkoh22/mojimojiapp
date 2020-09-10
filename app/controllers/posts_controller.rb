@@ -45,6 +45,10 @@ class PostsController < ApplicationController
     @comments = @post.comments.includes(:user)
   end
 
+  def search
+    @post = Post.search(params[:keyword])
+  end
+
   private
   def post_params
     params.require(:post).permit(:vocab, :definition, :example, :image).merge(user_id: current_user.id)
