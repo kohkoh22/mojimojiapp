@@ -1,15 +1,68 @@
-=@user.nickname
--if @user.posts.present?
-  -@user.posts.each do |post|
-    .index-box
-      =link_to post_path(post.id) do
-        .index-image
-          =image_tag post.image.url, class: 'vocabimage', size: "250x250" 
-        .index-contents
-          .index-contents__vocab
-            =post.vocab
-          .index-contents__definition
-            意味:
-            =post.definition
--else
-  %h5 投稿がありません
+.mypage
+  .mypage__profile
+    .mypage__profile--image
+      -# -if @user.image.url
+      -#   =image_tag @user.image.url, class: 'userimage', size: "130x130"
+    .mypage__profile--name
+      =@user.nickname
+      %br/
+      -# -if user_signed_in?
+      -#   -unless @user == current_user
+      -#     -if current_user.following?(@user)
+      -#       = link_to unfollow_path(@user.id), method: :POST, class:"follow-function" do
+      -#         %i.fas.fa-user-times
+      -#         フォロー外す
+      -#     -else
+      -#       = link_to follow_path(@user.id), method: :POST, class:"follow-function" do
+      -#         %i.fas.fa-user-plus
+      -#         フォローする
+    -# -if user_signed_in? && @user == current_user
+    -#   .mypage__profile--edit
+    -#     = link_to edit_user_path(current_user) do
+    -#       %i.fas.fa-user-edit
+    -#       編集する
+    .mypage__profile--contents
+      .number-of-posts
+        =@user.posts.count
+        %br/
+        投稿数
+      -# .follower
+      -#   = link_to following_user_path(@user) do
+      -#     =@user.followed.count
+      -#     %br/
+      -#     フォロワー
+      -# .followed
+      -#   =link_to followers_user_path(@user) do
+      -#     =@user.follower.count
+      -#     %br/
+      -#     フォロー
+  .mypage__more
+    =@user.profile
+  .mypage__posts
+    .index
+      -if @user.posts.present?
+        -@user.posts.each do |post|
+          .index-box
+            =link_to post_path(post.id) do
+              .index-image
+                =image_tag post.image.url, class: 'vocabimage', size: "250x250" 
+              .index-contents
+                .index-contents__vocab
+                  =post.vocab
+                .index-contents__definition
+                  意味:
+                  =post.definition
+                .index-contents__detail
+                  .index-contents__detail--user
+                    =link_to user_path(post.user_id) do
+                      -# =image_tag post.user.image.url, class:'profilepic', size:"30x30"
+                      =post.user.nickname
+                  -# .index-contents__detail--stats
+                  -#   %i.far.fa-eye
+                  -#   =post.impressions_count
+                  -#   %i.fas.fa-heart.my-red
+                  -#   =post.liked_users.count
+                .index-contents__time
+                  =post.created_at.strftime("%Y年%m月%d日")
+      -else
+        %h5 投稿がありません
