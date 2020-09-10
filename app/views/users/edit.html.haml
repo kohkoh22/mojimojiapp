@@ -1,0 +1,16 @@
+.register
+  .register__title
+    %i.fas.fa-user.fa-2x
+    %h3 プロフィール編集
+  = form_with model: @user, class: 'new_user',local:true do |f|
+    .field
+      = f.label :ニックネーム
+      %br/
+      = f.text_field :nickname, autofocus: true
+    .field
+      = f.label :プロフィール
+      %br/
+      = f.text_field :profile, autofocus: true
+    .field
+      = f.submit "編集する", class:"submitbtn"
+    
