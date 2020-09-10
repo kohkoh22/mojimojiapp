@@ -6,16 +6,16 @@
     .mypage__profile--name
       =@user.nickname
       %br/
-      -# -if user_signed_in?
-      -#   -unless @user == current_user
-      -#     -if current_user.following?(@user)
-      -#       = link_to unfollow_path(@user.id), method: :POST, class:"follow-function" do
-      -#         %i.fas.fa-user-times
-      -#         フォロー外す
-      -#     -else
-      -#       = link_to follow_path(@user.id), method: :POST, class:"follow-function" do
-      -#         %i.fas.fa-user-plus
-      -#         フォローする
+      -if user_signed_in?
+        -unless @user == current_user
+          -if current_user.following?(@user)
+            = link_to unfollow_path(@user.id), method: :POST, class:"follow-function" do
+              %i.fas.fa-user-times
+              フォロー外す
+          -else
+            = link_to follow_path(@user.id), method: :POST, class:"follow-function" do
+              %i.fas.fa-user-plus
+              フォローする
     -if user_signed_in? && @user == current_user
       .mypage__profile--edit
         = link_to edit_user_path(current_user) do
@@ -26,16 +26,16 @@
         =@user.posts.count
         %br/
         投稿数
-      -# .follower
-      -#   = link_to following_user_path(@user) do
-      -#     =@user.followed.count
-      -#     %br/
-      -#     フォロワー
-      -# .followed
-      -#   =link_to followers_user_path(@user) do
-      -#     =@user.follower.count
-      -#     %br/
-      -#     フォロー
+      .follower
+        = link_to following_user_path(@user) do
+          =@user.followed.count
+          %br/
+          フォロワー
+      .followed
+        =link_to followers_user_path(@user) do
+          =@user.follower.count
+          %br/
+          フォロー
   .mypage__more
     =@user.profile
   .mypage__posts
