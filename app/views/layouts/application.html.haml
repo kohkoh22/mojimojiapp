@@ -45,9 +45,9 @@
                 = link_to destroy_user_session_path, method: :delete do
                   %i.fas.fa-sign-in-alt
                   ログアウト
-              -# =link_to users_path, class:"to-userindex" do
-              -#   %i.fas.fa-user
-              -#   一覧
+              =link_to users_path, class:"to-userindex" do
+                %i.fas.fa-user
+                一覧
             .sns-links__facebook
               %i.fab.fa-facebook.fa-lg
             .sns-links__twitter
