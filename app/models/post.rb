@@ -3,4 +3,5 @@ class Post < ApplicationRecord
     validates v, presence: true
   end
   mount_uploader :image, ImageUploader
+  belongs_to :user
 end

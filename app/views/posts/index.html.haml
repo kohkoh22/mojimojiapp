@@ -1,3 +1,4 @@
+%p みんなの文字
 .index
   -if @post.present?
     -@post.each do |post|
@@ -11,8 +12,15 @@
             .index-contents__definition
               意味:
               =post.definition
-  -else
-    %h5 文字がありません
-  =link_to new_post_path do
-    .logins__mojiru
-      %i.fas.fa-feather.fa-4x
+            .index-contents__detail
+              .index-contents__detail--user
+                =link_to user_path(post.user_id) do
+                  -# =image_tag post.user.image.url, class:'profilepic', size:"30x30"
+                  =post.user.nickname
+              -# .index-contents__detail--stats
+              -#   %i.far.fa-eye
+              -#   =post.impressions_count
+              -#   %i.fas.fa-heart.my-red
+              -#   =post.liked_users.count
+            .index-contents__time
+              =post.created_at.strftime("%Y年%m月%d日")

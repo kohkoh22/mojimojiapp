@@ -1,0 +1,15 @@
+=@user.nickname
+-if @user.posts.present?
+  -@user.posts.each do |post|
+    .index-box
+      =link_to post_path(post.id) do
+        .index-image
+          =image_tag post.image.url, class: 'vocabimage', size: "250x250" 
+        .index-contents
+          .index-contents__vocab
+            =post.vocab
+          .index-contents__definition
+            意味:
+            =post.definition
+-else
+  %h5 投稿がありません
