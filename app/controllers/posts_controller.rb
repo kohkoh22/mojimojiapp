@@ -45,6 +45,7 @@ class PostsController < ApplicationController
     @comment = Comment.new
     @comments = @post.comments.includes(:user)
     @like = Like.new
+    impressionist(@post, nil, unique: [:session_hash])
   end
 
   def search

@@ -18,8 +18,8 @@
                   -# =image_tag post.user.image.url, class:'profilepic', size:"30x30"
                   =post.user.nickname
               .index-contents__detail--stats
-                -# %i.far.fa-eye
-                -# =post.impressions_count
+                %i.far.fa-eye
+                =post.impressionist_count
                 %i.fas.fa-heart.my-red
                 =post.liked_users.count
             .index-contents__time
