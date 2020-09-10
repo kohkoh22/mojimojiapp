@@ -4,4 +4,14 @@ class Post < ApplicationRecord
   end
   mount_uploader :image, ImageUploader
   belongs_to :user
+  has_many :comments
+
+  def previous
+    Post.order('created_at desc, id desc').where('created_at <= ? and id < ?', created_at, id).first
+  end
+
+  def next
+    Post.order('created_at desc, id desc').where('created_at >= ? and id > ?', created_at, id).reverse.first
+  end
+
 end
