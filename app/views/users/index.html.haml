@@ -16,26 +16,26 @@
               =user.nickname
           %td
             .likes
-              -# -unless user.id==current_user.id
-              -#   -if current_user.following?(user)
-              -#     = link_to unfollow_path(user.id), method: :post, class:"likes__unfollow" do
-              -#       フォロー中
-              -#   -else
-              -#     = link_to 'フォローする', follow_path(user.id), method: :post, class:"likes__follow"
-              -# -else
-              -#   .likes__my
-              -#     %i.fas.fa-user
+              -unless user.id==current_user.id
+                -if current_user.following?(user)
+                  = link_to unfollow_path(user.id), method: :post, class:"likes__unfollow" do
+                    フォロー中
+                -else
+                  = link_to 'フォローする', follow_path(user.id), method: :post, class:"likes__follow"
+              -else
+                .likes__my
+                  %i.fas.fa-user
             .number-of-posts
               =user.posts.count
               %br/
               %i.fas.fa-pencil-alt
-            -# .follower
-            -#   = link_to following_user_path(user) do
-            -#     =user.followed.count
-            -#     %br/
-            -#     フォロワー
-            -# .followed
-            -#   =link_to followers_user_path(user) do
-            -#     =user.follower.count
-            -#     %br/
-            -#     フォロー
+            .follower
+              = link_to following_user_path(user) do
+                =user.followed.count
+                %br/
+                フォロワー
+            .followed
+              =link_to followers_user_path(user) do
+                =user.follower.count
+                %br/
+                フォロー
