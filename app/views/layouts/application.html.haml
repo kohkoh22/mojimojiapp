@@ -35,9 +35,9 @@
                   %i.fas.fa-sign-in-alt
                   新規登録
           .search
-            -# = form_with(url: search_posts_path, local: true, method: :get, class: "search-form") do |form|
-            -#   = form.text_field :keyword, class: "search-input"
-            -#   = form.submit "検索", class: "search-btn", placeholder:"文字名を入力"
+            = form_with(url: search_posts_path, local: true, method: :get, class: "search-form") do |form|
+              = form.text_field :keyword, class: "search-input"
+              = form.submit "検索", class: "search-btn", placeholder:"文字名を入力"
 
           .sns-links
             -if user_signed_in?
