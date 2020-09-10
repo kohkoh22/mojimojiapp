@@ -8,4 +8,53 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    .wrapper
+      .header
+        .header__contents
+          .appname
+            =link_to "/" do
+              文字る
+          .logins
+            -if user_signed_in?
+              .logins__mypage
+                =link_to  "/users/#{current_user.id}" do
+                  -# =image_tag current_user.image.url, class:"userimage", size:"40x40"
+                  =current_user.nickname
+             
+              =link_to new_post_path do
+                .logins__mojiru
+                  %i.fas.fa-feather.fa-4x
+                  
+            -else
+              .logins__login
+                = link_to new_user_session_path, class: "post" do
+                  %i.fas.fa-door-open
+                  ログイン
+              .logins__signin
+                = link_to  new_user_registration_path, class: "post" do
+                  %i.fas.fa-sign-in-alt
+                  新規登録
+          .search
+            -# = form_with(url: search_posts_path, local: true, method: :get, class: "search-form") do |form|
+            -#   = form.text_field :keyword, class: "search-input"
+            -#   = form.submit "検索", class: "search-btn", placeholder:"文字名を入力"
+
+          .sns-links
+            -if user_signed_in?
+              .logins__logout
+                = link_to destroy_user_session_path, method: :delete do
+                  %i.fas.fa-sign-in-alt
+                  ログアウト
+              -# =link_to users_path, class:"to-userindex" do
+              -#   %i.fas.fa-user
+              -#   一覧
+            .sns-links__facebook
+              %i.fab.fa-facebook.fa-lg
+            .sns-links__twitter
+              %i.fab.fa-twitter.fa-lg
+            .sns-links__instagram
+              %i.fab.fa-instagram.fa-lg
+      .body
+        .body__contents
+          = yield
+        .footer

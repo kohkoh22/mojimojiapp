@@ -1,0 +1,35 @@
+.register
+  .register__title
+    %i.fas.fa-user.fa-2x
+    %h3 新規登録
+  = form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f|
+    .field
+      = f.label :"ニックネーム"
+      %span 必須
+      %br/
+      = f.text_field :nickname, autofocus: true
+    .field
+      = f.label :"プロフィール"
+      %span 必須
+      %br/
+      = f.text_field :profile, autofocus: true
+    .field
+      = f.label :"メールアドレス"
+      %span 必須
+      %br/
+      = f.email_field :email, autofocus: true, autocomplete: "email"
+    .field
+      = f.label :password
+      - if @minimum_password_length
+        %em
+          (#{@minimum_password_length} characters minimum)
+      %br/
+      = f.password_field :password, autocomplete: "new-password"
+    .field
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation, autocomplete: "new-password"
+    .field
+      = f.submit "新規登録", class:"submitbtn"
+    .field
+      = render "devise/shared/links"
