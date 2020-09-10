@@ -24,17 +24,17 @@
             -#   =image_tag @post.user.image.url, class: 'userimage', size: "40x40"
             =@post.user.nickname
           
-        -# .show-likes
-        -#   = @post.likes.count
-        -#   -if user_signed_in?
-        -#     -if current_user.already_liked?(@post)
-        -#       = button_to post_like_path(@post), method: :delete, class:"like-btn" do
-        -#         %i.fas.fa-heart.my-red
-        -#     -else
-        -#       = button_to post_likes_path(@post), class:"like-btn" do
-        -#         %i.fas.fa-heart.my-red
-        -#   -else
-        -#     %i.fas.fa-heart.my-red
+        .show-likes
+          = @post.likes.count
+          -if user_signed_in?
+            -if current_user.already_liked?(@post)
+              = button_to post_like_path(@post), method: :delete, class:"like-btn" do
+                %i.fas.fa-heart.my-red
+            -else
+              = button_to post_likes_path(@post), class:"like-btn" do
+                %i.fas.fa-heart.my-red
+          -else
+            %i.fas.fa-heart.my-red
         -#   %i.far.fa-eye
         -#   =@post.impressions_count
     .show__bottom

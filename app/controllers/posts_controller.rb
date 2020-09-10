@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
   def index
     @post = Post.all.order("created_at DESC")
+    @like = Like.new
   end
 
   def new
@@ -43,6 +44,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.includes(:user)
+    @like = Like.new
   end
 
   def search
