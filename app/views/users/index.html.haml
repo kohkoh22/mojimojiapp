@@ -14,6 +14,8 @@
               -# -if user.image.url
               -#   =image_tag user.image.url, class: 'userimage', size: "40x40"
               =user.nickname
+            -if current_user.admin? 
+              = link_to "ユーザー削除", user_path(user.id), method: :delete, data: { confirm: "You sure?" }
           %td
             .likes
               -unless user.id==current_user.id
