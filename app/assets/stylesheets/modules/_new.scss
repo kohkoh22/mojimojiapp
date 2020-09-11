@@ -1,0 +1,69 @@
+.form{
+  width: 60%;
+  height: auto;
+  background-color:white;
+  margin: 40px auto;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  padding: 70px;
+  .postform{
+    width: auto;
+    height: 100%;
+    margin: 50px auto;
+  }
+  &__title{
+    width: auto;
+    height: auto;
+    display: flex;
+    text-align: center;
+    margin: 0 200px;
+    h3{
+      font-size: 40px;
+    }
+  }
+  &__input{
+    .formpart{
+      width: auto;
+      height: auto;
+      margin-left: 60px;
+      &__error{
+        p{
+          font-size:15px;
+        }
+      }
+      span{
+        color: red;
+      }
+    }
+    input{
+      border-style: none;
+      border-bottom: 2px solid black;
+      background-color: white;
+      width: 500px;
+      height: 40px;
+    }
+    label{
+      margin-top: 30px;
+      font-size: 20px;
+    }
+    textarea{
+      border-style: none;
+      border-bottom: 2px solid black;
+      overflow: auto;
+      width: 500px;
+    }
+    .filelabel{
+      cursor: pointer;
+      .image-post{
+        display: none;
+      }
+    }
+    .postformbtn{
+      background-color: brown;
+      width: 200px;
+      border: none;
+      color: white;
+      margin: 80px 160px 40px;
+    }
+  }
+}
