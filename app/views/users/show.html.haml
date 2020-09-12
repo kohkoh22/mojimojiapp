@@ -16,6 +16,9 @@
             = link_to follow_path(@user.id), method: :POST, class:"follow-function" do
               %i.fas.fa-user-plus
               フォローする
+    .mypage__profile--likes
+      =link_to likes_user_path(@user.id) do
+        いいねした投稿
     -if user_signed_in? && @user == current_user
       .mypage__profile--edit
         = link_to edit_user_path(current_user) do
