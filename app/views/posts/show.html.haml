@@ -54,7 +54,7 @@
         = link_to "https://twitter.com/share?url=#{ request.url }&text=#{ @post.vocab }を、Twitterでみんなに広めよう！", class: 'share-btn', target: '_blank' do
           %i.fab.fa-twitter 
           Twitterでシェア
-      -if user_signed_in? && current_user.id == @post.user_id || current_user.admin?
+      -if user_signed_in? && current_user.id == @post.user_id || current_user && current_user.admin?
         .show__bottom--delete-and-edit
           = link_to edit_post_path(@post.id), class:"editbtn", method: :get do
             %i.fas.fa-edit
@@ -64,9 +64,6 @@
             削除
       
       .show__bottom--tag
-        -# タグ:
-        -# .show__tag--each
-        -#   = raw(@post.tag_list.map { |t| link_to t, tag_path(t), class: "label label-default" }.join(' '))
 .comment
   .comment__logo
     %i.fas.fa-comments.fa-2x
