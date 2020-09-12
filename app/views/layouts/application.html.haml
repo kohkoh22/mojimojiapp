@@ -18,7 +18,7 @@
             -if user_signed_in?
               .logins__mypage
                 =link_to  "/users/#{current_user.id}" do
-                  -# =image_tag current_user.image.url, class:"userimage", size:"40x40"
+                  =image_tag current_user.image.url, class:"userimage", size:"40x40"
                   =current_user.nickname
              
               =link_to new_post_path do

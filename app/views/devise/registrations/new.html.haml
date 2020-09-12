@@ -14,6 +14,11 @@
       %br/
       = f.text_field :profile, autofocus: true
     .field
+      = f.label :"プロフィール画像"
+      %span 必須
+      %br/
+      = f.file_field :image, class: 'postformwhat', placeholder: '写真のURLを入力'
+    .field
       = f.label :"メールアドレス"
       %span 必須
       %br/
