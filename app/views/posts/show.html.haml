@@ -89,6 +89,8 @@
                 = link_to "/users/#{comment.user_id}" do
                   -# =image_tag comment.user.image.url, class: 'userimage', size: "40x40"
                   =comment.user.nickname
+                  -if user_signed_in? && current_user.id == comment.user_id || current_user && current_user.admin?
+                    =link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete
               .comment-each__who--time
                 = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
             .comment-each__what
