@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
     collection do
       get 'search'
+      get 'likes'
     end
   end
   resources :users, only: [:index,:new, :show, :edit, :update, :destroy] do
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
     end
     member do
       get :following, :followers
+      get 'likes'
     end
   end
   

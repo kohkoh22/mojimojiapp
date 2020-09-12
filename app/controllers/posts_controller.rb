@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show, :likes]
   def index
-    @post = Post.page(params[:page]).per(3).order("created_at DESC")
+    @post = Post.page(params[:page]).per(9).order("created_at DESC")
     @like = Like.new
   end
 
@@ -50,6 +50,11 @@ class PostsController < ApplicationController
 
   def search
     @post = Post.search(params[:keyword])
+  end
+
+  def likes
+    @post = Post.all.sort {|a,b| b.liked_users.count <=> a.liked_users.count}
+    @posts = Post.all.sort {|a,b| b.impressionist_count <=> a.impressionist_count}
   end
 
   private

@@ -49,6 +49,10 @@ class UsersController < ApplicationController
     @users = @user.followed
     render 'followed'
   end
+
+  def likes
+    @user = User.find(params[:id])
+  end
   
   private
   def user_params
