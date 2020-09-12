@@ -20,8 +20,8 @@
       .show__top--user-likes
         .show-user
           =link_to user_path(@post.user_id) do
-            -# -if @post.user.image.url
-            -#   =image_tag @post.user.image.url, class: 'userimage', size: "40x40"
+            -if @post.user.image.url
+              =image_tag @post.user.image.url, class: 'userimage', size: "40x40"
             =@post.user.nickname
           
         .show-likes
@@ -87,7 +87,8 @@
             .comment-each__who
               .comment-each__who--name
                 = link_to "/users/#{comment.user_id}" do
-                  -# =image_tag comment.user.image.url, class: 'userimage', size: "40x40"
+                  -if comment.post.user.image.url
+                    =image_tag comment.user.image.url, class: 'userimage', size: "40x40"
                   =comment.user.nickname
                   -if user_signed_in? && current_user.id == comment.user_id || current_user && current_user.admin?
                     =link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete

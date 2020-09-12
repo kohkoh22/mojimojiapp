@@ -12,5 +12,9 @@
       %br/
       = f.text_field :profile, autofocus: true
     .field
+      = f.label :プロフィール画像
+      %br/
+      = f.file_field :image, class: 'postformwhat', placeholder: '写真のURLを入力'
+    .field
       = f.submit "編集する", class:"submitbtn"
     

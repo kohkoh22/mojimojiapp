@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー取得
   has_many :following_user, through: :follower, source: :followed 
   has_many :follower_user, through: :followed, source: :follower 
+  mount_uploader :image, ImageUploader
 
   def self.search(search)
     if search != ""
