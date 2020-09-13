@@ -8,21 +8,37 @@
       %span 必須
       %br/
       = f.text_field :nickname, autofocus: true
+      - if @user.errors.include?(:nickname)
+        .formpart__error
+          %h6{:style => "color: red;"}
+            = @user.errors.full_messages_for(:nickname).first
     .field
       = f.label :"プロフィール"
       %span 必須
       %br/
       = f.text_field :profile, autofocus: true
+      - if @user.errors.include?(:profile)
+        .formpart__error
+          %h6{:style => "color: red;"}
+            = @user.errors.full_messages_for(:profile).first
     .field
       = f.label :"プロフィール画像"
       %span 必須
       %br/
       = f.file_field :image, class: 'postformwhat', placeholder: '写真のURLを入力'
+      - if @user.errors.include?(:image)
+        .formpart__error
+          %h6{:style => "color: red;"}
+            = @user.errors.full_messages_for(:image).first
     .field
       = f.label :"メールアドレス"
       %span 必須
       %br/
       = f.email_field :email, autofocus: true, autocomplete: "email"
+      - if @user.errors.include?(:email)
+        .formpart__error
+          %h6{:style => "color: red;"}
+            = @user.errors.full_messages_for(:email).first
     .field
       = f.label :password
       - if @minimum_password_length
@@ -30,10 +46,18 @@
           (#{@minimum_password_length} characters minimum)
       %br/
       = f.password_field :password, autocomplete: "new-password"
+      - if @user.errors.include?(:password)
+        .formpart__error
+          %h6{:style => "color: red;"}
+            = @user.errors.full_messages_for(:password).first
     .field
       = f.label :password_confirmation
       %br/
       = f.password_field :password_confirmation, autocomplete: "new-password"
+      - if @user.errors.include?(:password)
+        .formpart__error
+          %h6{:style => "color: red;"}
+            = @user.errors.full_messages_for(:password).first
     .field
       = f.submit "新規登録", class:"submitbtn"
     .field

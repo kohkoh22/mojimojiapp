@@ -9,6 +9,8 @@ Bundler.require(*Rails.groups)
 module Mojimojiapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
     config.load_defaults 6.0
     config.generators do |g|
       g.stylesheets false

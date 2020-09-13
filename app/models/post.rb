@@ -9,6 +9,10 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   is_impressionable
   
+  [:vocab, :definition, :example, :image, :user_id].each do |v|
+    validates v, presence: true
+  end
+  validates :vocab, length: { maximum: 40 }
 
   def previous
     Post.order('created_at desc, id desc').where('created_at <= ? and id < ?', created_at, id).first

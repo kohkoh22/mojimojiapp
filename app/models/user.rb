@@ -13,6 +13,12 @@ class User < ApplicationRecord
   has_many :follower_user, through: :followed, source: :follower 
   mount_uploader :image, ImageUploader
 
+  [:nickname, :email, :image, :password, :profile].each do |v|
+    validates v, presence: true
+  end
+  validates :nickname, uniqueness: true
+  validates :nickname, length: { maximum: 8 }
+
   def self.search(search)
     if search != ""
       User.where('nickname LIKE(?)', "%#{search}%")
