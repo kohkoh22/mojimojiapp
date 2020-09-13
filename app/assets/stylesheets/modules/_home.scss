@@ -1,0 +1,69 @@
+.logins{
+  font-size: 22px;
+  text-align: center;
+  a{
+    color: brown;
+  }
+  &__login{
+    display: flex;
+    justify-content: center;
+    &--each{
+      width: 12vw;
+      height: auto;
+      background-color: #FAF0E6;
+      margin: 30px 30px;
+      border-radius: 5px;
+      padding: 20px;
+    }
+  }
+}
+
+
+.home{
+  height: auto;
+  width: 26vw;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+  a{
+    color: black;
+  }
+  &__contents{
+    display: flex;
+    flex-wrap: wrap;
+    &--each{
+      width: 33%;
+      height: 148px;
+      border: 2px solid lightgrey;
+      padding: 25px;
+      line-height: 50px;
+      .my-book{
+        color: green;
+      }
+      .my-gold{
+        color: goldenrod;
+      }
+      .my-user{
+        color: skyblue;
+      }
+    }
+  }
+}
+
+.logout{
+  display: flex;
+  justify-content: center;
+  font-size: 22px;
+  text-align: center;
+  a{
+    color: brown;
+  }
+  &__btn{
+    width: 12vw;
+    height: auto;
+    background-color: #FAF0E6;
+    margin: 30px 30px;
+    border-radius: 5px;
+    padding: 20px;
+  }
+}

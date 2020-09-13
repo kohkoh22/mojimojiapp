@@ -1,0 +1,56 @@
+%p 文字る
+.logins
+  -unless user_signed_in?
+    .logins__login
+      .logins__login--each
+        = link_to new_user_session_path, class: "post" do
+          %i.fas.fa-door-open
+          ログイン
+      .logins__login--each
+        = link_to  new_user_registration_path, class: "post" do
+          %i.fas.fa-sign-in-alt
+          新規登録
+    %h6 ***投稿するにはログインが必要です***
+.home
+  .home__contents
+    .home__contents--each
+      =link_to posts_path do
+        %i.fas.fa-book-open.fa-3x.my-book
+        %br/
+        一覧
+    .home__contents--each
+      =link_to likes_posts_path do
+        %i.fas.fa-crown.fa-3x.my-gold
+        %br/
+        ランキング
+    .home__contents--each
+      =link_to users_path do
+        %i.fas.fa-users.fa-3x.my-user
+        %br/
+        一覧
+.ranking
+  .impression-box
+    .impression-title
+      %h3 最新の文字
+    .impression-ranking
+      -@post.first(10).each.with_index(1) do |post, index|
+        .impression
+          =link_to post_path(post.id) do
+            .impression__image
+              =image_tag post.image.url, class: 'vocabimage', size: "200x200"
+            .impression__contents
+              .impression__contents--vocab
+                =post.vocab
+              .impression__contents--definition
+                =post.definition
+              .impression__contents--numbers
+                %i.fas.fa-heart.my-red
+                =post.liked_users.count
+              .impression__contents--time
+                =post.created_at.strftime("%Y年%m月%d日")
+.logout
+  -if user_signed_in?
+    .logout__btn
+      = link_to destroy_user_session_path, method: :delete do
+        %i.fas.fa-sign-in-alt
+        ログアウト
