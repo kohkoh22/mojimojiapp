@@ -69,5 +69,11 @@
     background-color: white;
     border-bottom:lightgrey solid 2px;
     border-radius: 3px;
+    position: relative;
+    &--likes{
+      position: absolute;
+      top: 0;
+      right: 30px;
+    }
   }
 }
