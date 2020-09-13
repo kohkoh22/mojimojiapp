@@ -17,11 +17,9 @@
     }
   }
 }
-
-
 .home{
   height: auto;
-  width: 26vw;
+  width: 70vw;
   margin: auto;
   text-align: center;
   padding: 20px;
@@ -31,12 +29,12 @@
   &__contents{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     &--each{
-      width: 33%;
-      height: 148px;
+      width: 100px;
+      height: 100px;
       border: 2px solid lightgrey;
-      padding: 25px;
-      line-height: 50px;
+      padding-top: 13px;
       .my-book{
         color: green;
       }
@@ -53,17 +51,17 @@
 .logout{
   display: flex;
   justify-content: center;
-  font-size: 22px;
+  font-size: 15px;
   text-align: center;
   a{
     color: brown;
   }
   &__btn{
-    width: 12vw;
+    width: auto;
     height: auto;
     background-color: #FAF0E6;
-    margin: 30px 30px;
     border-radius: 5px;
     padding: 20px;
+    margin-bottom: 20px;
   }
 }

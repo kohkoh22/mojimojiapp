@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :move_to_index, except: [:index, :show, :likes, :search]
   def index
-    @post = Post.page(params[:page]).per(9).order("created_at DESC")
+    @post = Post.page(params[:page]).per(6).order("created_at DESC")
     @like = Like.new
   end
 
