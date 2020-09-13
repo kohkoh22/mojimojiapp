@@ -29,25 +29,30 @@
         %br/
         一覧
 .ranking
-  .impression-box
-    .impression-title
-      %h3 最新の文字
-    .impression-ranking
-      -@post.first(10).each.with_index(1) do |post, index|
-        .impression
-          =link_to post_path(post.id) do
-            .impression__image
-              =image_tag post.image.url, class: 'vocabimage', size: "200x200"
-            .impression__contents
-              .impression__contents--vocab
-                =post.vocab
-              .impression__contents--definition
-                =post.definition
-              .impression__contents--numbers
-                %i.fas.fa-heart.my-red
-                =post.liked_users.count
-              .impression__contents--time
-                =post.created_at.strftime("%Y年%m月%d日")
+  .impression-title
+    %h3 最新の文字
+  .impression-ranking
+    -@post.first(10).each.with_index(1) do |post, index|
+      .impression
+        =link_to post_path(post.id) do
+          .impression__image
+            =image_tag post.image.url, class: 'vocabimage', size: "250x250"
+          .impression__contents
+            .impression__contents--vocab
+              =post.vocab
+            .impression__contents--definition
+              意味:
+              =post.definition
+            .impression__contents--detail
+              =link_to user_path(post.user_id) do
+                -if post.user.image.url
+                  =image_tag post.user.image.url, class:'profilepic', size:"30x30"
+                =post.user.nickname
+            .impression__contents--numbers
+              %i.fas.fa-heart.my-red
+              =post.liked_users.count
+            .impression__contents--time
+              =post.created_at.strftime("%Y年%m月%d日")
 .logout
   -if user_signed_in?
     .logout__btn
