@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   has_many :likes
   has_many :liked_users, through: :likes, source: :user
   is_impressionable
-  
+
   [:vocab, :definition, :example, :image, :user_id].each do |v|
     validates v, presence: true
   end
@@ -23,11 +23,10 @@ class Post < ApplicationRecord
   end
 
   def self.search(search)
-    if search != ""
+    if search != ''
       Post.where('vocab LIKE(?)', "%#{search}%")
     else
       Post.all
     end
   end
-
 end
