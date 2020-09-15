@@ -38,6 +38,34 @@
             .sns-links__instagram
               %i.fab.fa-instagram.fa-lg
       .body
+        .user
+          .user__title
+            %i.fas.fa-users
+            人気ユーザー
+            -@popular.first(10).each.with_index(1) do |user, index|
+              .user__each
+                .user__each--name
+                  = index
+                  =link_to user_path(user.id) do
+                    -if user.image.url
+                      =image_tag user.image.url, class: 'userimage', size: "40x40"
+                    =user.nickname
+              %span
+              %br/
         .body__contents
           = yield
+        .user
+          .user__title
+            %i.fas.fa-users
+            人気ユーザー
+            -@popular.first(10).each.with_index(1) do |user, index|
+              .user__each
+                .user__each--name
+                  = index
+                  =link_to user_path(user.id) do
+                    -if user.image.url
+                      =image_tag user.image.url, class: 'userimage', size: "40x40"
+                    =user.nickname
+              %span
+              %br/
         .footer

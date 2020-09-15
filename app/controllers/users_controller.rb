@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    impressionist(@user, nil, unique: [:session_hash])
   end
 
   def destroy
@@ -55,7 +56,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.fetch(:user, {}).permit(:nickname, :image, :profile)
+    params.fetch(:user, {}).permit(:image, :nickname, :profile)
   end
 
   def admin_user

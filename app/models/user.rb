@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
   mount_uploader :image, ImageUploader
+  is_impressionable
 
   [:nickname, :email, :image, :password, :profile].each do |v|
     validates v, presence: true
