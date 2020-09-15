@@ -30,6 +30,11 @@
             = f.label :image, class:"filelabel" do
               %i.fas.fa-image.fa-lg
               = f.file_field :image, class: 'image-post'
+        .formpart  
+          %li
+            =f.label :tag_list, "タグ(複数の場合は , で分けてください)"
+            %span 必須
+            = f.text_field :tag_list, value: @post.tag_list.join(','), class: 'postformwhat'
         .formpart
           %li
             = f.submit '編集する', class: 'postformbtn'

@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   has_many :likes
   has_many :liked_users, through: :likes, source: :user
   is_impressionable
+  acts_as_taggable
 
   [:vocab, :definition, :example, :image, :user_id].each do |v|
     validates v, presence: true

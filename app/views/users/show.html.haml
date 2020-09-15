@@ -44,8 +44,9 @@
         %i.fas.fa-heart
         いいねした投稿
   .mypage__posts
+    %h5 投稿一覧
     .index
-      -if @user.posts.present?
+      -if @user.present?
         -@user.posts.each do |post|
           .index-box
             =link_to post_path(post.id) do
@@ -63,11 +64,19 @@
                       -if post.user.image.url
                         =image_tag post.user.image.url, class:'profilepic', size:"30x30"
                       =post.user.nickname
+                  
                   .index-contents__detail--stats
-                    -# %i.far.fa-eye
-                    -# =post.impressions_count
+                    %i.far.fa-eye
+                    =post.impressionist_count
                     %i.fas.fa-heart.my-red
                     =post.liked_users.count
+                .index-contents__more
+                  .index-contents__more--twitter
+                    = link_to "https://twitter.com/share?url=#{ request.url }&text=#{ post.vocab }を、Twitterでみんなに広めよう！", class: 'share-btn', target: '_blank' do
+                      %i.fab.fa-twitter 
+                      シェア
+                  .index-contents__more--tags
+                    = raw(post.tag_list.map { |t| link_to t, tag_path(t), class: "tag-each" }.join(' '))
                 .index-contents__time
                   =post.created_at.strftime("%Y年%m月%d日")
       -else

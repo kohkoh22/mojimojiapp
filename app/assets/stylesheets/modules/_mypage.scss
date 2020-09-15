@@ -6,7 +6,6 @@
     height: 160px;
     width: 100%;
     background-color: white;
-    border-bottom:lightgrey solid 2px;
     border-radius: 3px;
     display: flex;
     position: relative;
@@ -38,9 +37,7 @@
       }
     }
     &--image{
-      position: absolute;
-      top: 90px;
-      left: 250px;
+      margin: auto 30px;
       .userimage{
         border-radius: 50%;
         background-position: center center;
@@ -64,16 +61,30 @@
   }
   &__more{
     margin: auto;
-    height: 160px;
-    width: 100%;
+    height: auto;
+    width: auto;
     background-color: white;
     border-bottom:lightgrey solid 2px;
     border-radius: 3px;
     position: relative;
+    &--profile{
+      width: 80%;
+      height: 80%;
+      margin: auto;
+      padding: 50px;
+    }
     &--likes{
+      width: auto;
       position: absolute;
       top: 0;
       right: 30px;
+    }
+  }
+  &__posts{
+    h5{
+      padding: 30px 0;
+      text-align: center;
+      border-bottom: 2px solid lightgrey ;
     }
   }
 }

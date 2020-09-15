@@ -38,6 +38,9 @@
           %i.far.fa-eye
           =@post.impressionist_count
     .show__bottom
+      .show__bottom--tags
+        タグ:
+        = raw(@post.tag_list.map { |t| link_to t, tag_path(t), class: "tag-each" }.join(' '))
       .show__bottom--definition
         %h3 意味:
         %br/
@@ -50,6 +53,7 @@
       .show__bottom--time
         %i.far.fa-clock
         =@post.created_at.strftime("%Y年%m月%d日 %H時%M分")
+      
       .show__bottom--share
         = link_to "https://twitter.com/share?url=#{ request.url }&text=#{ @post.vocab }を、Twitterでみんなに広めよう！", class: 'share-btn', target: '_blank' do
           %i.fab.fa-twitter 

@@ -1,17 +1,15 @@
 class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
-
+  before_action :set_user, only: [:edit, :update, :destroy, :show, :following, :followed, :likes]
   def index
     @users = User.all
   end
 
   def edit
-    @user = User.find(params[:id])
     redirect_to user_path(@user) unless @user == current_user
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(current_user)
     else
@@ -20,12 +18,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     impressionist(@user, nil, unique: [:session_hash])
   end
 
   def destroy
-    @user = User.find(params[:id])
     if @user.destroy
       redirect_back(fallback_location: root_path)
     else
@@ -38,25 +34,26 @@ class UsersController < ApplicationController
   end
 
   def following
-    @user = User.find(params[:id])
     @users = @user.follower
     render 'following'
   end
 
   def followers
-    @user = User.find(params[:id])
     @users = @user.followed
     render 'followed'
   end
 
   def likes
-    @user = User.find(params[:id])
   end
 
   private
 
   def user_params
     params.fetch(:user, {}).permit(:image, :nickname, :profile)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
   def admin_user
