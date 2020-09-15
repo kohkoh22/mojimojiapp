@@ -5,6 +5,7 @@
   font-family: 'Hannotate SC',sans-serif;
 
 }
+
 .header{
   width: 100%;
   height: 70px;
@@ -105,19 +106,7 @@
         height: 100%;
         margin: auto 0;
       }
-      &__mojiru{
-        width: 130px;
-        height: 130px;
-        margin: auto 0;
-        background-color:Peru;
-        border-radius: 50%;
-        position: absolute;
-        bottom: -950px;
-        right: 70px;
-        i{
-          margin: 30px 30px;
-        }
-      }
+      
       &__login{
         width: auto;
         height: auto;
@@ -139,16 +128,30 @@
   width: 100%;
   height: auto;
   background-color: AntiqueWhite ;
-  overflow: scroll;
+  overflow-y: scroll;
   display: flex;
+  .mojiru{
+    width: 130px;
+    height: 130px;
+    margin: auto 0;
+    background-color:Peru;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 50px;
+    right: 70px;
+    i{
+      margin: 30px 30px;
+    }
+  }
   .user{
     width: 13vw;
     height: auto;
-    margin: 150px auto;
-    padding: 5px;
+    margin: 100px auto auto;
     background-color: white;
+    padding: 13px;
     &__title{
       text-align: center;
+      padding: 13px;
     }
     &__each{
       border-bottom: 1px solid lightgrey;
@@ -161,6 +164,22 @@
           border-radius: 50%;
         }
       }
+    }
+  }
+  .tag{
+    width: 13vw;
+    height: auto;
+    margin: 100px auto auto;
+    background-color: white;
+    text-align: center;
+    padding: 13px;
+    &__title{
+      padding: 13px;
+    }
+    &__box{
+      width: auto;
+      height: auto;
+      text-align: start;
     }
   }
   &__contents{
@@ -256,18 +275,41 @@
               }
             }
           }
-          &__twitter{
-            width: auto;
-            height: auto;
-            a{
-              text-decoration: none;
-              color: white;
+          &__more{
+            display: flex;
+            justify-content: space-between;
+            &--twitter{
+              width: auto;
+              height: auto;
+              a{
+                text-decoration: none;
+                color: white;
+              }
+              .share-btn{
+                width:auto;
+                border-radius: 5px;
+                background-color: #00aced;
+                padding: 5px;
+              }
             }
-            .share-btn{
+            &--tags{
+              width: auto;
+              height: auto;
               width:auto;
-              border-radius: 5px;
-              background-color: #00aced;
-              padding: 5px;
+              font-size: 10px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              .tag-each{
+                border-radius: 5px;
+              border: 1px solid lightgrey;
+              padding: 3px;
+              }
+              
+              a{
+                text-decoration: none;
+                color: black;
+              }
             }
           }
           &__time{
@@ -282,23 +324,6 @@
     .pagenation{
       display: flex;
       justify-content: center;
-    }
-    .tag{
-      width: 240px;
-      height: auto;
-      background-color: white;
-      position: absolute;
-      left: -260px;
-      top: 0px;
-      display: flex;
-      flex-wrap: wrap;
-      text-align: center;
-      &__box{
-        width: auto;
-        height: auto;
-        margin: 3px;
-        font-size: 15px;
-      }
     }
     .ranking{
       width: 100%;
@@ -339,7 +364,7 @@
             text-align: center;
           }
           &__contents{
-            height: 170px;
+            height: 250px;
             width: 200px;
             margin: 20px 13px;
             position: relative;
@@ -353,16 +378,62 @@
             }
             &--definition{
               width: 100%;
-              height:30%;
+              height:auto;
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: nowrap;
               margin-top: 16px;
             }
-            &--numbers{
-              font-size: 20px;
-              .my-red{
-                color: red;
+            &--detail{
+              display: flex;
+              justify-content: space-between;
+              margin: 50px 0;
+              .user-info{
+                .profilepic{
+                  border-radius: 50%;
+                }
+              }
+              .numbers{
+                .my-red{
+                  color: red;
+                }
+              }
+            }
+            &--more{
+              display: flex;
+              justify-content: space-between;
+              .twitter{
+                width: auto;
+                height: auto;
+                a{
+                  text-decoration: none;
+                  color: white;
+                }
+                .share-btn{
+                  width:auto;
+                  border-radius: 5px;
+                  background-color: #00aced;
+                  padding: 5px;
+                }
+              }
+              .tags{
+                width: auto;
+              height: auto;
+              width:auto;
+              font-size: 10px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              .tag-each{
+                border-radius: 5px;
+              border: 1px solid lightgrey;
+              padding: 3px;
+              }
+              
+              a{
+                text-decoration: none;
+                color: black;
+              }
               }
             }
             &--time{

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root "home#index"
   post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
+  get 'tags/:tag', to: 'posts#index', as: :tag
   resources :home, only: :index
   resources :posts do
     resources :likes, only: [:create, :destroy]

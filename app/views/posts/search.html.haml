@@ -1,29 +1,42 @@
 .search-title
-  =params[:keyword]
-  の検索結果
+  -unless @post.present?
+    =params[:keyword]
+    が入っている文字はありません
+  -else
+    =params[:keyword]
+    の検索結果
 .index
-  -@post.each do |post|
-    .index-box
-      =link_to post_path(post.id) do
-        .index-image
-          =image_tag post.image.url, class: 'vocabimage', size: "250x250" 
-        .index-contents
-          .index-contents__vocab
-            =post.vocab
-          .index-contents__definition
-            意味:
-            =post.definition
-          .index-contents__detail
-            .index-contents__detail--user
-              =link_to user_path(post.user_id) do
-                -if post.user.image.url
-                  =image_tag post.user.image.url, class:'profilepic', size:"30x30"
-                =post.user.nickname
-            .index-contents__detail--stats
-              %i.far.fa-eye
-              =post.impressionist_count
-              %i.fas.fa-heart.my-red
-              =post.liked_users.count
-          .index-contents__time
-            =post.created_at.strftime("%Y年%m月%d日")
+  -if @post.present?
+    -@post.each do |post|
+      .index-box
+        =link_to post_path(post.id) do
+          .index-image
+            =image_tag post.image.url, class: 'vocabimage', size: "250x250" 
+          .index-contents
+            .index-contents__vocab
+              =post.vocab
+            .index-contents__definition
+              意味:
+              =post.definition
+            .index-contents__detail
+              .index-contents__detail--user
+                =link_to user_path(post.user_id) do
+                  -if post.user.image.url
+                    =image_tag post.user.image.url, class:'profilepic', size:"30x30"
+                  =post.user.nickname
+              
+              .index-contents__detail--stats
+                %i.far.fa-eye
+                =post.impressionist_count
+                %i.fas.fa-heart.my-red
+                =post.liked_users.count
+            .index-contents__more
+              .index-contents__more--twitter
+                = link_to "https://twitter.com/share?url=#{ request.url }&text=#{ post.vocab }を、Twitterでみんなに広めよう！", class: 'share-btn', target: '_blank' do
+                  %i.fab.fa-twitter 
+                  シェア
+              .index-contents__more--tags
+                = raw(post.tag_list.map { |t| link_to t, tag_path(t), class: "tag-each" }.join(' '))
+            .index-contents__time
+              =post.created_at.strftime("%Y年%m月%d日")
 = render 'layouts/home' 

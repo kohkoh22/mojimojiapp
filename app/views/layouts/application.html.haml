@@ -22,10 +22,6 @@
                   -if current_user.image.url
                     =image_tag current_user.image.url, class:"userimage", size:"40x40"
                   =current_user.nickname
-             
-              =link_to new_post_path do
-                .me__mojiru
-                  %i.fas.fa-feather.fa-4x
           .search
             = form_with(url: search_posts_path, local: true, method: :get, class: "search-form") do |form|
               = form.text_field :keyword, class: "search-input"
@@ -38,20 +34,17 @@
             .sns-links__instagram
               %i.fab.fa-instagram.fa-lg
       .body
-        .user
-          .user__title
-            %i.fas.fa-users
-            人気ユーザー
-            -@popular.first(10).each.with_index(1) do |user, index|
-              .user__each
-                .user__each--name
-                  = index
-                  =link_to user_path(user.id) do
-                    -if user.image.url
-                      =image_tag user.image.url, class: 'userimage', size: "40x40"
-                    =user.nickname
-              %span
-              %br/
+        .mojiru
+          =link_to new_post_path do
+            %i.fas.fa-feather.fa-4x
+        .tag
+          .tag__title
+            %i.fas.fa-tags
+            タグ一覧
+          -@tags.each do |tag|
+            -unless tag.taggings.count==0
+              .tag__box
+                = link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name), class: ""
         .body__contents
           = yield
         .user
@@ -64,7 +57,7 @@
                   = index
                   =link_to user_path(user.id) do
                     -if user.image.url
-                      =image_tag user.image.url, class: 'userimage', size: "40x40"
+                      =image_tag user.image.url, class: 'userimage', size: "30x30"
                     =user.nickname
               %span
               %br/

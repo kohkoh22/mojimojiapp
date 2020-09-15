@@ -1,8 +1,12 @@
 class PostsController < ApplicationController
   before_action :move_to_index, except: [:index, :show, :likes, :search]
+  before_action :set_post, only: [:edit, :update, :destroy, :show]
   def index
-    @post = Post.page(params[:page]).per(30).order('created_at DESC')
-    @like = Like.new
+    if params[:tag]
+      @post = Post.tagged_with(params[:tag])
+    else
+      @post = Post.page(params[:page]).per(30).order("created_at DESC")
+    end
   end
 
   def new
@@ -19,11 +23,9 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to post_path
     else
@@ -32,7 +34,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     if @post.destroy
       redirect_to '/'
     else
@@ -41,7 +42,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.includes(:user)
     @like = Like.new
@@ -60,7 +60,11 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:vocab, :definition, :example, :image).merge(user_id: current_user.id)
+    params.require(:post).permit(:vocab, :definition, :example, :image, :tag_list).merge(user_id: current_user.id)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 
   def move_to_index

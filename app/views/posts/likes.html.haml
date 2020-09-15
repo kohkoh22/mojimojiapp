@@ -1,4 +1,3 @@
-= render 'layouts/home' 
 .ranking
   .impression-box
     .impression-title
@@ -8,20 +7,33 @@
     .impression-ranking
       -@post.first(10).each.with_index(1) do |post, index|
         .impression
+          =index
+          位
           =link_to post_path(post.id) do
-            .impression__index
-              = index
-              位
             .impression__image
-              =image_tag post.image.url, class: 'vocabimage', size: "200x200"
+              =image_tag post.image.url, class: 'vocabimage', size: "250x250"
             .impression__contents
               .impression__contents--vocab
                 =post.vocab
               .impression__contents--definition
+                意味:
                 =post.definition
-              .impression__contents--numbers
-                %i.fas.fa-heart.my-red
-                =post.liked_users.count
+              .impression__contents--detail
+                .user-info
+                  =link_to user_path(post.user_id) do
+                    -if post.user.image.url
+                      =image_tag post.user.image.url, class:'profilepic', size:"30x30"
+                    =post.user.nickname
+                .numbers
+                  %i.fas.fa-heart.my-red
+                  =post.liked_users.count
+              .impression__contents--more
+                .twitter
+                  = link_to "https://twitter.com/share?url=#{ request.url }&text=#{ post.vocab }を、Twitterでみんなに広めよう！", class: 'share-btn', target: '_blank' do
+                    %i.fab.fa-twitter 
+                    シェア
+                .tags
+                  = raw(post.tag_list.map { |t| link_to t, tag_path(t), class: "tag-each" }.join(' '))
               .impression__contents--time
                 =post.created_at.strftime("%Y年%m月%d日")
 .ranking
@@ -32,21 +44,35 @@
       %i.fas.fa-eye
       %h3 閲覧数順ランキング
     .impression-ranking
-      - @posts.first(10).each.with_index(1) do |post, index|
+      -@posts.first(10).each.with_index(1) do |post, index|
         .impression
+          =index
+          位
           =link_to post_path(post.id) do
-            .impression__index
-              = index
-              位
             .impression__image
-              =image_tag post.image.url, class: 'vocabimage', size: "200x200"
+              =image_tag post.image.url, class: 'vocabimage', size: "250x250"
             .impression__contents
               .impression__contents--vocab
                 =post.vocab
               .impression__contents--definition
+                意味:
                 =post.definition
-              .impression__contents--numbers
-                %i.fas.fa-eye
-                =post.impressionist_count
+              .impression__contents--detail
+                .user-info
+                  =link_to user_path(post.user_id) do
+                    -if post.user.image.url
+                      =image_tag post.user.image.url, class:'profilepic', size:"30x30"
+                    =post.user.nickname
+                .numbers
+                  %i.far.fa-eye
+                  =post.impressionist_count
+              .impression__contents--more
+                .twitter
+                  = link_to "https://twitter.com/share?url=#{ request.url }&text=#{ post.vocab }を、Twitterでみんなに広めよう！", class: 'share-btn', target: '_blank' do
+                    %i.fab.fa-twitter 
+                    シェア
+                .tags
+                  = raw(post.tag_list.map { |t| link_to t, tag_path(t), class: "tag-each" }.join(' '))
               .impression__contents--time
                 =post.created_at.strftime("%Y年%m月%d日")
+= render 'layouts/home' 
