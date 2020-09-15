@@ -1,3 +1,4 @@
+= render 'layouts/home' 
 %p みんなの文字
 .index
   -if @post.present?
@@ -18,11 +19,16 @@
                   -if post.user.image.url
                     =image_tag post.user.image.url, class:'profilepic', size:"30x30"
                   =post.user.nickname
+              
               .index-contents__detail--stats
                 %i.far.fa-eye
                 =post.impressionist_count
                 %i.fas.fa-heart.my-red
                 =post.liked_users.count
+            .index-contents__twitter
+              = link_to "https://twitter.com/share?url=#{ request.url }&text=#{ post.vocab }を、Twitterでみんなに広めよう！", class: 'share-btn', target: '_blank' do
+                %i.fab.fa-twitter 
+                シェア
             .index-contents__time
               =post.created_at.strftime("%Y年%m月%d日")
 .pagenation

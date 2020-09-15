@@ -7,14 +7,26 @@
       = f.label :ニックネーム
       %br/
       = f.text_field :nickname, autofocus: true
+      - if @user.errors.include?(:nickname)
+        .formpart__error
+          %h6{:style => "color: red;"}
+            = @user.errors.full_messages_for(:nickname).first
     .field
       = f.label :プロフィール
       %br/
-      = f.text_field :profile, autofocus: true
+      = f.text_field :profile, class: 'postformwhat', placeholder: '写真のURLを入力'
+        - if @user.errors.include?(:profile)
+        .formpart__error
+          %h6{:style => "color: red;"}
+            = @user.errors.full_messages_for(:profile).first
     .field
       = f.label :プロフィール画像
       %br/
       = f.file_field :image, class: 'postformwhat', placeholder: '写真のURLを入力'
+        - if @user.errors.include?(:image)
+        .formpart__error
+          %h6{:style => "color: red;"}
+            = @user.errors.full_messages_for(:image).first
     .field
       = f.submit "編集する", class:"submitbtn"
     

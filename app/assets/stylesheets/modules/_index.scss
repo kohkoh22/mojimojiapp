@@ -137,9 +137,32 @@
 }
 .body{
   width: 100%;
-  height: 100vh;
+  height: auto;
   background-color: AntiqueWhite ;
   overflow: scroll;
+  display: flex;
+  .user{
+    width: 13vw;
+    height: auto;
+    margin: 150px auto;
+    padding: 5px;
+    background-color: white;
+    &__title{
+      text-align: center;
+    }
+    &__each{
+      border-bottom: 1px solid lightgrey;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+      padding: 2px;
+      &--name{
+        .userimage{
+          border-radius: 50%;
+        }
+      }
+    }
+  }
   &__contents{
     width: 70%;
     height: auto;
@@ -231,6 +254,20 @@
               .my-red{
                 color: red;
               }
+            }
+          }
+          &__twitter{
+            width: auto;
+            height: auto;
+            a{
+              text-decoration: none;
+              color: white;
+            }
+            .share-btn{
+              width:auto;
+              border-radius: 5px;
+              background-color: #00aced;
+              padding: 5px;
             }
           }
           &__time{
