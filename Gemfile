@@ -71,3 +71,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'rails-i18n'
 gem 'acts-as-taggable-on', '~> 6.0'
+
+group :production do
+  gem 'rails_12factor'
+end
