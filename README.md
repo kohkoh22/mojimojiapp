@@ -2,8 +2,8 @@
 * 文字る
 
 # 概要 Description
-* 文字を作ってシェア出来る投稿サイト
-* 言葉、意味、例文、それに関してのイメージを含む投稿
+* 造語をシェア出来る投稿サイト
+* 「言葉、意味、例文, 画像」を含む投稿をし、ユーザー同士が「フォロー、いいね」などで繋がり、「タグ、人気ユーザー、ランキング」などで飽きないアプリとなっております。
 
 # 説明 Features
 ## 基礎機能
@@ -27,7 +27,7 @@
 * ページネーション機能(bootstrap)
 * コメント機能(投稿、削除)
 * エラー日本語化
-* レスポンシブ対応
+* レスポンシブ対応(一部のみ)
 * フォロー機能
 * フォロワー/フォロー表示機能
 * 投稿詳細ページの前と次の詳細ページへ遷移のリンク付け
@@ -45,6 +45,7 @@
 # DEMO
 
 # 工夫したポイント
+## ユーザーがアプリ内のページにいる時に次にどうするかという思考を無くすために一つのページになるべく色々なリンクに飛べるように設計しました。
 
 # 環境条件 Requirement/gem
 * Ruby'2.6.5'
@@ -52,12 +53,13 @@
 
 # 本番環境
 * 本番環境のIPアドレス
-  http://54.95.247.118/
+  
 * テスト用ログイン情報
-- email :aaa@aaa.com
-- password :aaaaaa
+- email :
+- password :
 
 # 制作背景
+## 自分が留学時に日本人が日常的に新しい文字を作り出していく造語が独特な文化だと気付き、小さなコミュニティーで使うものから流行語大賞になるまでのものなど、様々な言葉が毎年生まれていることに対して、それを記録としてユーザーが気軽にシェアできればなと思いこのアプリを作りました。
 
 # 課題や今後実装したい機能
 * いいね/コメント/投稿消去,検索などの非同期化
@@ -74,20 +76,24 @@
 |Column|Type|Options|
 |------|----|-------|
 |nickname|string|null: false|
+|profile|string|null: false|
 |image|text|null:false|
+|image|text|null:false|
+|admin|boolean|default: false|
 |email|string|null: false|
 |password|string|null: false|
 
 ### Association
-- has_many :posts
+- has_many :posts, dependent: :destroy
 - has_many :comments
-- has_many :likes
+- has_many :likes, dependent: :destroy
 - has_many :liked_posts
 - has_many :sns_credentials
 - has_many :follower
 - has_many :followed
 - has_many :following_user
 - has_many :follower_user
+
 ## postsテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -96,7 +102,6 @@
 |example|text|null: false|
 |image|text|null:false|
 |user_id|integer|null: false|
-|impressions_count|integer|
 
 ### Association
 - belongs_to :user

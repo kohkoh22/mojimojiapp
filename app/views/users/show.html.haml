@@ -16,11 +16,11 @@
             = link_to follow_path(@user.id), method: :POST, class:"follow-function" do
               %i.fas.fa-user-plus
               フォローする
-    -if user_signed_in? && @user == current_user
-      .mypage__profile--edit
-        = link_to edit_user_path(current_user) do
-          %i.fas.fa-user-edit
-          編集する
+    -# -if user_signed_in? && @user == current_user
+    -#   .mypage__profile--edit
+    -#     = link_to edit_user_path(current_user) do
+    -#       %i.fas.fa-user-edit
+    -#       編集する
     .mypage__profile--contents
       .number-of-posts
         =@user.posts.count
