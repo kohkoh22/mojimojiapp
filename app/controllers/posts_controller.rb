@@ -2,11 +2,11 @@ class PostsController < ApplicationController
   before_action :move_to_index, except: [:index, :show, :likes, :search]
   before_action :set_post, only: [:edit, :update, :destroy, :show]
   def index
-    if params[:tag]
-      @post = Post.tagged_with(params[:tag])
-    else
-      @post = Post.page(params[:page]).per(30).order("created_at DESC")
-    end
+    @post = if params[:tag]
+              Post.tagged_with(params[:tag])
+            else
+              Post.page(params[:page]).per(30).order('created_at DESC')
+            end
   end
 
   def new
@@ -68,7 +68,6 @@ class PostsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to action: :index unless user_signed_in?
+    redirect_to root_path unless user_signed_in?
   end
-
 end

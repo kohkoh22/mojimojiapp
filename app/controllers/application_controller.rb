@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
   end
 
   def tagging_orders
-    @tags = ActsAsTaggableOn::Tag.all.sort {|a,b| b.taggings_count <=> a.taggings_count}
+    @tags = ActsAsTaggableOn::Tag.all.sort { |a, b| b.taggings_count <=> a.taggings_count }
   end
 end

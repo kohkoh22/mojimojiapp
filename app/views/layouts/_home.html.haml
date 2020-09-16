@@ -52,7 +52,7 @@
               .user-info
                 =link_to user_path(post.user_id) do
                   -if post.user.image.url
-                    =image_tag post.user.image.url, class:'profilepic', size:"30x30"
+                    =image_tag post.user.image.url, class:'profilepic', size:"28x28"
                   =post.user.nickname
               .numbers
                 %i.fas.fa-heart.my-red

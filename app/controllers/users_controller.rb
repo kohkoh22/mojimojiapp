@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
-  before_action :set_user, only: [:edit, :update, :destroy, :show, :following, :followed, :likes]
+  before_action :set_user, only: [:edit, :update, :destroy, :show, :following, :followers, :likes]
   def index
-    @users = User.all
+    @users = User.all.sort {|a,b| b.followed.count <=> a.followed.count}
   end
 
   def edit
