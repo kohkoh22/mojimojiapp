@@ -50,7 +50,7 @@
           %li
             =f.label :tag_list, "タグ(複数の場合は , で分けてください)"
             %span 任意
-            = f.text_field :tag_list, value: @post.tag_list.join(','), class: 'postformwhat'
+            = f.text_field :tag_list, value: @post.tag_list.join(','), class: 'postformwhat', placeholder: "最近, おもしろ, 流行"
         .formpart
           %li
             = f.submit '投稿する', class: 'postformbtn'
