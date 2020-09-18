@@ -46,7 +46,7 @@
   .mypage__posts
     %h5 投稿一覧
     .index
-      -if @user.present?
+      -if @user.posts.present?
         -@user.posts.each do |post|
           .index-box
             =link_to post_path(post.id) do

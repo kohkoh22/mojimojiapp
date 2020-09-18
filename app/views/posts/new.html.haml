@@ -49,7 +49,7 @@
         .formpart  
           %li
             =f.label :tag_list, "タグ(複数の場合は , で分けてください)"
-            %span 必須
+            %span 任意
             = f.text_field :tag_list, value: @post.tag_list.join(','), class: 'postformwhat'
         .formpart
           %li
