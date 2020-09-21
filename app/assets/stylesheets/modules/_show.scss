@@ -58,7 +58,7 @@
       }
       &--user-likes{
         width: 70%;
-        margin: auto auto ;
+        margin: 20px auto ;
         text-align: none;
         display: flex;
         justify-content: space-between;
@@ -214,6 +214,7 @@
             font-size: 17px;
             .userimage{
               border-radius: 50%;
+              background-position: center center;
             }
             a{
               color: blue;

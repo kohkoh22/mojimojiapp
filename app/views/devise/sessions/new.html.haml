@@ -18,5 +18,7 @@
     .field
       = f.submit "ログイン", class:"submitbtn"
     .field
+      = link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class:"linkbtn"
+    .field
       = render "devise/shared/links"
 
