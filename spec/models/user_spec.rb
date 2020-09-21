@@ -26,12 +26,6 @@ describe User do
       expect(user.errors[:email]).to include('が入力されていません。')
     end
 
-    it 'is invalid without an image' do
-      user = FactoryBot.build(:user, image: '')
-      user.valid?
-      expect(user.errors[:image]).to include('が入力されていません。')
-    end
-
     it 'is invalid without a password' do
       user = FactoryBot.build(:user, password: '')
       user.valid?

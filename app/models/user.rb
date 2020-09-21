@@ -14,7 +14,7 @@ class User < ApplicationRecord
   mount_uploader :image, ImageUploader
   is_impressionable
 
-  [:nickname, :email, :image, :password, :profile].each do |v|
+  [:nickname, :email, :password, :profile].each do |v|
     validates v, presence: true
   end
   validates :nickname, uniqueness: true
@@ -46,4 +46,11 @@ class User < ApplicationRecord
   def following?(user)
     following_user.include?(user)
   end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com', nickname: 'ゲスト', profile:'ゲストです。趣味はプログラミングです。') do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
+
 end

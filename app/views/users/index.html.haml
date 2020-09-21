@@ -5,6 +5,7 @@
       = form.text_field :keyword, placeholder: "ユーザーを検索する", class: "search-input"
       = form.submit "検索", class: "search-btn"
   %h6 ***フォロワー順***
+  %h6 #{@users.count}人！
   .user-list
     %table
       - @users.each do |user|

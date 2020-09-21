@@ -54,13 +54,14 @@
             %i.fas.fa-users
             人気ユーザー
             -@popular.first(10).each.with_index(1) do |user, index|
-              .user__each
-                .user__each--name
-                  = index
-                  =link_to user_path(user.id) do
-                    -if user.image.url
-                      =image_tag user.image.url, class: 'userimage', size: "30x30"
-                    =user.nickname
+              -unless user.nickname == "ゲスト"
+                .user__each
+                  .user__each--name
+                    = index
+                    =link_to user_path(user.id) do
+                      -if user.image.url
+                        =image_tag user.image.url, class: 'userimage', size: "30x30"
+                      =user.nickname
               %span
               %br/
         .footer
