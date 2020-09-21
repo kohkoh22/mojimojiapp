@@ -33,13 +33,14 @@
 * 投稿詳細ページの前と次の詳細ページへ遷移のリンク付け
 * RSpecを使った単体テスト
 
+
 # 使用技術
 * Haml
 * Saas
 * Git(GitHub)
 * Ruby
 * Ruby on Rails
-* Heroku
+* AWS(EC2)
 * RSpec
 
 # DEMO
@@ -53,7 +54,7 @@
 
 # 本番環境
 * 本番環境のIPアドレス
-  
+  http://54.95.52.225/
 * テスト用ログイン情報
 - email :
 - password :
